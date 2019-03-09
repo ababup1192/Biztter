@@ -1,0 +1,6 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/abab/Desktop/scala-seed-project/src/test/scala/org/biztter/BiztterSpec.scala:28:9: missing argument list for method apply in class ItWord[0m
+[0m[[0m[31merror[0m] [0m[0mUnapplied methods are only converted to functions when a function type is expected.[0m
+[0m[[0m[31merror[0m] [0m[0mYou can make this conversion explicit by writing `apply _` or `apply(_,_)(_)(_)` instead of `apply`.[0m
+[0m[[0m[31merror[0m] [0m[0m      it("JohnがMikeをフォローした")[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
