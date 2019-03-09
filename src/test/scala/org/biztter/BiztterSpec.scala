@@ -5,6 +5,10 @@ import org.scalatest._
 class BiztterSpec extends FunSpec with Matchers {
   def signUpUsers(users: User*): Biztter = users.foldLeft(Biztter()) { _.signUp(_) }
 
+  val john = User("John", 18, Some("J"))
+  val mike = User("Mike", 18)
+  val arisa = User("Arisa", 22)
+
   describe("The Biztter Project") {
     describe("ユーザ登録") {
       it("Biztterがオープンしました!") {
@@ -12,15 +16,12 @@ class BiztterSpec extends FunSpec with Matchers {
       }
 
       it("JohnがBiztterに登録した。") {
-        val john = User("John", 18)
         val biztter = Biztter().signUp(john)
 
         assert(biztter.users === Seq(john))
       }
 
       it("JohnとMikeがBiztterに登録した。") {
-        val john = User("John", 18)
-        val mike = User("Mike", 18)
         val biztter = signUpUsers(john, mike)
 
         assert(biztter.users === Seq(mike, john))
@@ -40,6 +41,20 @@ class BiztterSpec extends FunSpec with Matchers {
 
       it("空の名前は登録できない") {
         assert(Biztter().signUp(User("", 55)).users === Seq.empty)
+      }
+    }
+
+    describe("ユーザ") {
+      it("JohnのスクリーンネームはJだ。") {
+        val biztter = signUpUsers(john, mike, arisa)
+
+        assert(biztter.screenNameBy("John") === Some("J"))
+      }
+
+      it("Arisaのスクリーンネームは登録されていないので、Arisaのままだ。") {
+        val biztter = signUpUsers(john, mike, arisa)
+
+        assert(biztter.screenNameBy("Arisa") === Some("Arisa"))
       }
     }
   }
